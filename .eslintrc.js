@@ -3,10 +3,12 @@ module.exports = {
     browser: true,
     es6: true,
     "jest/globals": true,
+    node: true,
   },
   extends: [
     "eslint:recommended",
     "plugin:react/recommended",
+    "plugin:prettier/recommended",
   ],
   parserOptions: {
     ecmaFeatures: {
@@ -16,18 +18,20 @@ module.exports = {
     sourceType: "module",
   },
   plugins: ["react", "jest"],
+  settings: {
+    react: {
+      version: "detect",
+    },
+  },
   rules: {
     indent: ["error", 2],
     "linebreak-style": ["error", "unix"],
     quotes: ["error", "double"],
-    semi: ["error", "never"],
+    semi: ["error", "always"],
     eqeqeq: "error",
     "no-trailing-spaces": "error",
     "object-curly-spacing": ["error", "always"],
-    "arrow-spacing": [
-      "error",
-      { before: true, after: true },
-    ],
+    "arrow-spacing": ["error", { before: true, after: true }],
     "no-console": "error",
     "react/prop-types": 0,
   },
