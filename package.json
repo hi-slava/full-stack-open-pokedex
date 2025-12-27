@@ -7,7 +7,7 @@
     "start": "webpack-dev-server --open --mode development",
     "start-prod": "node app.js",
     "test": "jest",
-    "e2e-test": "playwright test --project=chromium --project=firefox",
+    "e2e-test": "npx playwright test --project=chromium --project=firefox",
     "eslint": "eslint './**/*.{js,jsx}'",
     "build": "webpack --mode production",
     "prettier": "prettier --write './**/*.{js,jsx,json,css,md}'"

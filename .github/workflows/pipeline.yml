@@ -21,6 +21,9 @@ jobs:
       - name: Run linting
         run: npm run eslint
 
+      - name: Build project
+        run: npm run build
+
       - name: Run tests
         run: npm test
 
@@ -28,7 +31,7 @@ jobs:
         run: npx playwright install --with-deps
 
       - name: Run Playwright tests
-        run: playwright test --project=chromium --project=firefox
+        run: npm run e2e-test
 
       - uses: actions/upload-artifact@v4
         if: ${{ !cancelled() }}
@@ -37,8 +40,5 @@ jobs:
           path: playwright-report/
           retention-days: 30
 
-      # - name: Build project
-      #   run: npm run build
-
-      # - name: Deploy application
-      #   run: echo "Deploying application..." # Placeholder for actual deployment commands
+      - name: Deploy application
+        run: echo "Deploying application..." # Placeholder for actual deployment commands
