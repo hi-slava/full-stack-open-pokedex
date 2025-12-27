@@ -10,4 +10,15 @@ describe("Pokedex", () => {
       )
     ).toBeVisible();
   });
+
+  test("pokemon details can be opened", async ({ page }) => {
+    await page.goto("");
+    await page.getByText("jigglypuff").click();
+    await expect(
+      page.getByText("Cute Charm".toLocaleLowerCase())
+    ).toBeVisible();
+    await expect(
+      page.getByText("Friend Guard".toLocaleLowerCase())
+    ).toBeVisible();
+  });
 });
