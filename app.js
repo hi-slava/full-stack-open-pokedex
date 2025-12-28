@@ -11,7 +11,8 @@ app.get("/version", (req, res) => {
 });
 
 app.get("/health", (req, res) => {
-  if (process.env.SIMULATE_HEALTH_CHECK_FAILURE === "true") {
+  if (req.query.fail === "true") {
+    // if health check linked to /health?fail=true, simulate failure
     res.status(500).send("simulated failure");
     return;
   }
