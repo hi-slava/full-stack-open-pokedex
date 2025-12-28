@@ -11,6 +11,10 @@ app.get("/version", (req, res) => {
 });
 
 app.get("/health", (req, res) => {
+  if (process.env.SIMULATE_HEALTH_CHECK_FAILURE === "true") {
+    res.status(500).send("simulated failure");
+    return;
+  }
   res.send("ok");
 });
 
