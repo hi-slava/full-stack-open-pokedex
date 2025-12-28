@@ -7,14 +7,14 @@ const PORT = process.env.PORT || 5001;
 app.use(express.static("dist"));
 
 app.get("/version", (req, res) => {
-  res.send("2"); // change this string to ensure a new version deployed
+  res.send("3"); // change this string to ensure a new version deployed
 });
 
 app.get("/health", (req, res) => {
-  if (req.query.fail === "true") {
-    // if health check linked to /health?fail=true, simulate failure
+  // if service started with env variable SIMULATE_HEALTH_FAIL=true, simulate failure
+  if (process.env.SIMULATE_HEALTH_FAIL === "true") {
     res.status(500).send("simulated failure");
-    return;
+    process.exit(1);
   }
   res.send("ok");
 });
