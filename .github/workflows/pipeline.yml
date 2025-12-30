@@ -75,6 +75,7 @@ jobs:
           RELEASE_BRANCHES: main
           WITH_V: false
           NONE_STRING_TOKEN: "#skip"
+          BRANCH_HISTORY: last
 
       - name: Debug - Check tag action output
         run: |
