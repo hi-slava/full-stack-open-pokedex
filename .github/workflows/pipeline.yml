@@ -44,7 +44,6 @@ jobs:
           retention-days: 30
 
   tag_release:
-    needs: simple_deployment_pipeline
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     permissions:
