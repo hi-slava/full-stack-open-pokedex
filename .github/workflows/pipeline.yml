@@ -64,7 +64,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DEFAULT_BUMP: patch
           RELEASE_BRANCHES: main
-          WITH_V: false
+          NONE_STRING_TOKEN: skip
 
       - name: Update package.json with new tag version
         if: steps.tag.outputs.new_tag != ''
