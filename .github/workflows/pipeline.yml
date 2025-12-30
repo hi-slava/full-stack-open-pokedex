@@ -58,8 +58,19 @@ jobs:
           fetch-depth: "0"
 
       - name: Bump version and push tag
+        id: tag
         uses: anothrNick/github-tag-action@1.75.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DEFAULT_BUMP: patch
           RELEASE_BRANCHES: main
+          WITH_V: false
+
+      - name: Update package.json with new tag version
+        if: steps.tag.outputs.new_tag != ''
+        run: |
+          NEW_VERSION="${{ steps.tag.outputs.new_tag }}"
+          npm pkg set version=$NEW_VERSION
+          git add package.json package-lock.json
+          git commit -m "chore: sync package.json version to $NEW_VERSION" || exit 0
+          git push
