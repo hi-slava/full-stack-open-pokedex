@@ -78,12 +78,13 @@ jobs:
 
       - name: Debug - Check tag action output
         run: |
-          echo "New tag output: ${{ steps.tag.outputs.new_tag }}"
-          echo "Previous tag output: ${{ steps.tag.outputs.previous_tag }}"
-          echo "Tag created: ${{ steps.tag.outputs.tag_created }}"
+          echo "new_tag - The value of the newly created tag: ${{ steps.tag.outputs.new_tag }}"
+          echo "old_tag - The value of the last semantic version tag before the version bump: ${{ steps.tag.outputs.old_tag }}"
+          echo "tag - The value of the latest tag after running this action: ${{ steps.tag.outputs.tag }}"
+          echo "part - The part of version which was bumped: ${{ steps.tag.outputs.part }}"
 
       - name: Update package.json with new tag version
-        if: steps.tag.outputs.new_tag != ''
+        if: steps.tag.outputs.old_tag != ''
         run: |
           NEW_VERSION="${{ steps.tag.outputs.new_tag }}"
           echo "Updating package.json to version: $NEW_VERSION"
